@@ -3,6 +3,9 @@ package crawler;
 import java.util.ArrayList;
 import java.util.List;
 
+import html_analysis.HttpMethod;
+import html_analysis.Page;
+
 public class Crawler {
 	
 	
@@ -29,8 +32,13 @@ public class Crawler {
 	}
 	
 	public void crawling(String[] urls){
-		
-		
+		if(urls == null || urls.length == 0){
+			return;
+		}
+		for(int i=0;i<urls.length;i++){
+			Page page = HttpMethod.sendRequestAndGetResponse(urls[i]);
+			
+		}
 		
 	}
 

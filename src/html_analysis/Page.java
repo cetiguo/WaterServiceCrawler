@@ -1,20 +1,70 @@
 package html_analysis;
 
-import org.apache.commons.httpclient.DefaultHttpMethodRetryHandler;
-import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.methods.GetMethod;
-import org.apache.commons.httpclient.methods.PostMethod;
-import org.apache.commons.httpclient.params.HttpMethodParams;
+import java.io.UnsupportedEncodingException;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 
 public class Page {
-	public static Page sendRequestAndGetResponse(String url){
-		Page page = null;
-		HttpClient httpClient = new HttpClient();
-		httpClient.getHttpConnectionManager().getParams().setConnectionTimeout(5000);
-		GetMethod getMethod = new GetMethod(url);
-		getMethod.getParams().setParameter(HttpMethodParams.SO_TIMEOUT, 5000);
-		getMethod.getParams().setParameter(HttpMethodParams.RETRY_HANDLER, new DefaultHttpMethodRetryHandler());
-		
-		return page;
+	private byte[] content;
+	private String html;
+	private Document doc;
+	private String charset;
+	private String url;
+	private String contentType;
+	
+	
+	public Page(byte[] content,String url,String contentType){
+		this.content = content;
+		this.url = url;
+		this.contentType = contentType;
 	}
+	
+	public String getCharset() {
+		return charset;
+	}
+
+	public String getHtml() {
+		if(html != null){
+			return html;
+		}
+		if(content == null){
+			return null;
+		}
+		if(charset == null){
+			charset = CharsetDetector.guessEncoding(content);
+		}
+		try{
+			this.html = new String(content, charset);
+			return html;
+		}catch(UnsupportedEncodingException ex){
+			ex.printStackTrace();
+			return null;
+		}
+	}
+
+	public Document getDoc() {
+		if(doc != null){
+			return doc;
+		}
+		try{
+			this.doc = Jsoup.parse(getHtml(),url);
+			return doc;
+		}catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public String getContentType() {
+		return contentType;
+	}
+	
+	public byte[] getContent(){
+		return content;
+	}
+	
 }
