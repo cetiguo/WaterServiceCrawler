@@ -15,5 +15,7 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="lib" path="F:/WorkProgram Files/JAVA_Lib/org.apache.commons.httpclient.jar"/>
 	<classpathentry kind="lib" path="F:/WorkProgram Files/JAVA_Lib/juniversalchardet-2.3.0.jar"/>
+	<classpathentry kind="lib" path="F:/WorkProgram Files/JAVA_Lib/mail/smtp-1.6.2.jar"/>
+	<classpathentry kind="lib" path="F:/WorkProgram Files/JAVA_Lib/mail/javax.mail-1.6.2.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
