@@ -30,9 +30,9 @@ public class Crawler {
 		if(searchURL == null || searchURL.size() == 0){
 			System.out.println("未选择网址,进程结束！");
 		}else{
-//			crawler.crawling(searchURL.toArray(new String[searchURL.size()]));
-			crawler.crawling(httpweburl + targetURL[0] + "/" + userArea[3] + "/");
-			crawler.crawling(httpweburl + targetURL[1] + "/" + userArea[3] + "/");
+			crawler.crawling(searchURL.toArray(new String[searchURL.size()]));
+//			crawler.crawling(httpweburl + targetURL[0] + "/" + userArea[3] + "/");
+//			crawler.crawling(httpweburl + targetURL[1] + "/" + userArea[3] + "/");
 		}
 		
 	}
@@ -68,7 +68,8 @@ public class Crawler {
 				Page page = HttpMethod.sendRequestAndGetResponse(urls[i]);
 				Document doc = page.getDoc();
 				Elements tds = doc.select("td .liebiaobiaoti");
-				Elements as = tds.select("a");
+				Elements as = tds.nextAll();
+//				Elements as = tds.select("a");
 				for(Element a : as) {
 					System.out.println(a.text());
 				}
