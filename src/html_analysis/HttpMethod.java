@@ -60,6 +60,7 @@ public class HttpMethod {
 			String contentType = response.getFirstHeader("Content-Type").getValue();
 			page = new Page(responseBody, url, contentType);
 			
+			return page;
 		}catch(Exception e){
 			e.printStackTrace();
 			return null;
@@ -83,7 +84,5 @@ public class HttpMethod {
 			}
 		}
 		
-		
-		return page;
 	}
 }
