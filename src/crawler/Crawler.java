@@ -2,6 +2,7 @@ package crawler;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map.Entry;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -30,9 +31,9 @@ public class Crawler {
 		if(searchURL == null || searchURL.size() == 0){
 			System.out.println("未选择网址,进程结束！");
 		}else{
-			crawler.crawling(searchURL.toArray(new String[searchURL.size()]));
-//			crawler.crawling(httpweburl + targetURL[0] + "/" + userArea[3] + "/");
-//			crawler.crawling(httpweburl + targetURL[1] + "/" + userArea[3] + "/");
+//			crawler.crawling(searchURL.toArray(new String[searchURL.size()]));
+			crawler.crawling(httpweburl + targetURL[0] + "/" + userArea[3] + "/");
+			crawler.crawling(httpweburl + targetURL[1] + "/" + userArea[3] + "/");
 		}
 		
 	}
@@ -48,8 +49,17 @@ public class Crawler {
 			Document doc = page.getDoc();
 			Elements tds = doc.select("td .liebiaobiaoti");
 			Elements as = tds.select("a");
-			for(Element a : as) {
-				System.out.println(a.text());
+			Elements ds = tds.nextAll();	//日期数据
+//			for(Element a : as) {
+//				System.out.println(a.text());
+//			}
+			for(int i=0;i<as.size();i++){
+				
+				
+				System.out.print(as.get(i).text());
+				System.out.print("\t");
+				System.out.print(ds.get(i).text());
+				System.out.println();
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -68,10 +78,16 @@ public class Crawler {
 				Page page = HttpMethod.sendRequestAndGetResponse(urls[i]);
 				Document doc = page.getDoc();
 				Elements tds = doc.select("td .liebiaobiaoti");
-				Elements as = tds.nextAll();
-//				Elements as = tds.select("a");
-				for(Element a : as) {
-					System.out.println(a.text());
+				Elements as = tds.select("a");
+				Elements ds = tds.nextAll();
+//				for(Element a : as) {
+//					System.out.println(a.text());
+//				}
+				for(int j=0;j<as.size();j++){
+					System.out.print(as.get(j).text());
+					System.out.print("\t");
+					System.out.print(ds.get(j).text());
+					System.out.println();
 				}
 			}
 		}catch(Exception e) {
