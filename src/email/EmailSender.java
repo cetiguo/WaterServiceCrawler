@@ -15,12 +15,13 @@ import javax.mail.internet.MimeMessage;
 public class EmailSender {
 	public static int addressCount = 1;
 	
-	public Properties properties(){
+	private static Properties properties(){
 		Properties prop = new Properties();
 		prop.setProperty("debug", "false");
 		prop.setProperty("mail.transport.protocol", "smtp");
 		prop.setProperty("mail.smtp.auth", "true");
 		prop.setProperty("mail.host", "smtp.qq.com");
+		
 		return prop;
 	}
 	
@@ -28,6 +29,7 @@ public class EmailSender {
 		Properties prop = null;
 		
 		try{
+			prop = properties();
 			Session session = Session.getInstance(prop, new Authenticator(){
 				@Override
 				protected PasswordAuthentication getPasswordAuthentication(){
