@@ -18,6 +18,7 @@ import recognizer.Recognizer;
 
 public class Crawler {
 	
+	final static String baseurl = "http://www.whwater.com";
 	final static String httpweburl = "http://www.whwater.com/gsfw/tstz/";
 
 	public static void main(String[] args) {
@@ -79,14 +80,15 @@ public class Crawler {
 				return;
 			}
 			System.out.println("------------------------下面开始发送邮件------------------------");
+			StringBuffer toSendStr = new StringBuffer();
 			for(int i =0; i <toSendElements.length;i++){
 				String href = toSendElements[i].attr("href");
 				toSendElements[i].attr("href", "http://www.whwater.com" + href);
-				String toSendStr = toSendElements[i].outerHtml();
+				toSendStr.append(toSendElements[i].outerHtml() + "\r");
 				System.out.print("停水通知:" + "\t\t");
-				System.out.println(toSendStr);
-				EmailSender.sendMessage(toSendStr);
+				System.out.println(toSendStr.toString());
 			}
+			EmailSender.sendMessage(toSendStr);
 			System.out.println("------------------------邮件发送完毕------------------------");
 			System.out.println("-------程序结束-------");
 				
