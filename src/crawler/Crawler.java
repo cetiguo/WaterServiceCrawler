@@ -2,7 +2,6 @@ package crawler;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map.Entry;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -88,7 +87,7 @@ public class Crawler {
 				System.out.print("停水通知:" + "\t\t");
 				System.out.println(toSendStr.toString());
 			}
-			EmailSender.sendMessage(toSendStr);
+			EmailSender.sendMessage(toSendStr.toString());
 			System.out.println("------------------------邮件发送完毕------------------------");
 			System.out.println("-------程序结束-------");
 				
