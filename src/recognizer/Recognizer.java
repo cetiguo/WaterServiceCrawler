@@ -1,7 +1,6 @@
 package recognizer;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import org.jsoup.nodes.Element;
