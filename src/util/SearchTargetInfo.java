@@ -9,24 +9,22 @@ package util;
 public enum SearchTargetInfo {
 	
 	
-	HANKOU("hk"),
+	HANKOU("hk","汉口"),
 	
-	WUCHANG("wc"),
+	WUCHANG("wc","武昌"),
 	
-	HANYANG("hy"),
+	HANYANG("hy","汉阳"),
 	
-	DONGHU("dhgx");
+	DONGHU("dhgx","东湖高新");
 	
 	private final String url;
+	private final String areaName;
 	private Type type;
-	private SearchTargetInfo(String url){
+	private SearchTargetInfo(String url,String name){
 		this.url = url;
+		this.areaName = name;
 	}
 	
-	private SearchTargetInfo(String url,Type type){
-		this.url = url;
-		this.setType(type);
-	}
 	
 	Type getType(){
 		return type;
@@ -51,19 +49,34 @@ public enum SearchTargetInfo {
 		return getType().getTypeUrl() + "/" + getUrl() + "/";
 	}
 
+	/**
+	 * @return the areaName
+	 */
+	public String getAreaName() {
+		return areaName;
+	}
+
 	public enum Type{
-		SUDDEN("tfxts"),
-		PLAN("jhxts");
+		SUDDEN("tfxts","突发性停水"),
+		PLAN("jhxts","计划性停水");
 		
 		private final String typeUrl;
-		private Type(String typeUrl){
+		private final String typeName;
+		private Type(String typeUrl,String typeName){
 			this.typeUrl = typeUrl;
+			this.typeName = typeName;
 		}
 		/**
 		 * @return the typeUrl
 		 */
 		public String getTypeUrl() {
 			return typeUrl;
+		}
+		/**
+		 * @return the typeName
+		 */
+		public String getTypeName() {
+			return typeName;
 		}
 	}
 }
