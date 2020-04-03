@@ -1,7 +1,6 @@
 package html_analysis;
 
 import java.io.IOException;
-import java.io.InputStream;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpStatus;
