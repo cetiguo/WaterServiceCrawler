@@ -23,8 +23,8 @@ public class Recognizer {
 		for(int i = 0;i < list.size(); i ++){
 			Element dateEle = ((Element)list.getJSONObject(i).get("date"));
 			String dateStr = dateEle.text();
-//			String today = DateUtil.getToday();
-			String today = "2020-01-04";
+			String today = DateUtil.getToday();
+//			String today = "2020-01-04";
 			boolean timeFlag = false;
 			boolean posiFlag = false;
 			if(today.equals(dateStr)) 
