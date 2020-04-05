@@ -38,7 +38,7 @@ public class EmailSender {
 			});
 			Message msg = new MimeMessage(session);
 			msg.setFrom(new InternetAddress("cetiguo@foxmail.com"));
-			msg.setSubject("停水通知");
+			msg.setSubject("来自cetiguo.com的停水通知");
 			msg.setRecipient(RecipientType.TO, new InternetAddress("cetiguo@foxmail.com"));
 			msg.setContent(str,"text/html;charset=UTF-8");
 			Transport.send(msg);
